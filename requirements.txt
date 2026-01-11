@@ -1,7 +1,7 @@
-streamlit==1.31.0
-pandas==2.2.0
-plotly==5.18.0
-PyPDF2==3.0.1
-numpy==1.26.0
+streamlit>=1.36
+pandas>=2.2
+plotly>=5.22
+PyPDF2>=3.0.1
+numpy>=1.26
 pillow>=11.0.0
-matplotlib==3.8.2 
+matplotlib>=3.8
