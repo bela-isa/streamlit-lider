@@ -18,177 +18,285 @@ st.set_page_config(
 )
 
 # =========================
-# THEME (FORÇADO CLARO + GLASS)
+# THEME REFINADO
 # =========================
 st.markdown(
     """
 <style>
 :root{
-  --bg1:#f7f8ff;
-  --bg2:#ffffff;
-  --bg3:#f6fbff;
-
-  --text:#0f172a;
-  --muted:rgba(15,23,42,.62);
-
-  --border:rgba(15,23,42,.10);
-  --shadow: 0 12px 32px rgba(2,6,23,.10);
-
-  --purple:#7c3aed;
-  --cyan:#06b6d4;
-  --orange:#f97316;
-  --green:#22c55e;
-  --red:#ef4444;
-  --indigo:#4f46e5;
+  --bg-primary: #fafbfc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f6f8fa;
+  
+  --text-primary: #1a1f36;
+  --text-secondary: #697386;
+  --text-tertiary: #8792a2;
+  
+  --border-light: #e3e8ee;
+  --border-default: #cbd2d9;
+  
+  --accent-primary: #5469d4;
+  --accent-secondary: #0ea5e9;
+  --accent-success: #10b981;
+  --accent-warning: #f59e0b;
+  --accent-danger: #ef4444;
+  
+  --shadow-sm: 0 1px 3px rgba(50, 50, 93, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(50, 50, 93, 0.08), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
 }
 
-/* forçar fundo claro e texto escuro */
-.stApp{
-  background: radial-gradient(900px 520px at 10% 0%, rgba(124,58,237,0.14), transparent 60%),
-              radial-gradient(900px 520px at 95% 10%, rgba(6,182,212,0.12), transparent 60%),
-              radial-gradient(900px 520px at 50% 95%, rgba(34,197,94,0.10), transparent 60%),
-              linear-gradient(180deg, var(--bg1), var(--bg2) 40%, var(--bg3));
-  color: var(--text) !important;
+.stApp {
+  background: linear-gradient(135deg, #f6f8fa 0%, #fafbfc 100%);
+  color: var(--text-primary);
 }
 
-.block-container { padding-top: 1.15rem; }
-
-/* Sidebar (se existir) */
-[data-testid="stSidebar"]{
-  background: rgba(255,255,255,0.78) !important;
-  border-right: 1px solid var(--border) !important;
+.block-container {
+  padding-top: 2rem;
+  max-width: 1400px;
 }
 
 /* Header */
-.h-title{
-  font-size: 1.75rem;
-  font-weight: 900;
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
   letter-spacing: -0.02em;
-  text-align: center;
-  margin: 0.25rem 0 0.15rem 0;
-  color: var(--text);
-}
-.h-sub{
-  text-align: center;
-  color: var(--muted);
-  margin: 0 0 1rem 0;
 }
 
-/* Panels */
-.panel{
-  background: rgba(255,255,255,0.88);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 14px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(10px);
-}
-.panel-tight{ padding: 12px; }
-
-/* Section header */
-.section{
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  margin: 0.15rem 0 0.85rem 0;
-}
-.dot{
-  width: 10px; height: 10px; border-radius: 999px;
-  margin-top: 6px;
-  box-shadow: 0 0 0 6px rgba(79,70,229,0.10);
-}
-.section-title{ font-size: 1.06rem; font-weight: 850; color: var(--text); }
-.section-desc{ color: var(--muted); font-size: 0.92rem; margin-top: 0.10rem; }
-
-/* Chips */
-.chip{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background: rgba(255,255,255,0.88);
-  color: rgba(15,23,42,0.78);
-  font-size: 0.82rem;
-  margin-right: 8px;
+.dashboard-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
-/* Metric cards */
-.metric-grid{
-  display:grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-@media (max-width: 1100px){
-  .metric-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 650px){
-  .metric-grid{ grid-template-columns: 1fr; }
+/* Cards e Painéis */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s ease;
 }
 
-.metric{
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-compact {
+  padding: 1rem;
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.section-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-left: auto;
+}
+
+/* Metric Cards */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
   position: relative;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.82));
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 26px rgba(2,6,23,0.08);
 }
-.metric:before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  opacity: .55;
-  pointer-events:none;
-  background: radial-gradient(700px 140px at 18% 0%, rgba(79,70,229,0.35), transparent 58%);
-}
-.metric.purple:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(124,58,237,0.35), transparent 58%); }
-.metric.cyan:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(6,182,212,0.35), transparent 58%); }
-.metric.orange:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(249,115,22,0.35), transparent 58%); }
-.metric.green:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(34,197,94,0.32), transparent 58%); }
-.metric.red:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(239,68,68,0.30), transparent 58%); }
-.metric.indigo:before{ background: radial-gradient(700px 140px at 18% 0%, rgba(79,70,229,0.35), transparent 58%); }
 
-.metric-label{ position: relative; z-index:1; font-size:0.80rem; color: var(--muted); }
-.metric-value{ position: relative; z-index:1; font-size:1.45rem; font-weight: 950; letter-spacing:-0.02em; margin:2px 0 0 0; color: var(--text); }
-.metric-delta{ position: relative; z-index:1; font-size:0.80rem; color: rgba(15,23,42,0.68); margin-top:2px; }
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.metric-card:hover::before {
+  opacity: 1;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1;
+}
+
+.metric-delta {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid var(--border-light);
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge-primary {
+  background: rgba(84, 105, 212, 0.1);
+  border-color: rgba(84, 105, 212, 0.2);
+  color: var(--accent-primary);
+}
 
 /* Tabs */
-.stTabs [data-baseweb="tab-list"]{ gap: 8px; }
-.stTabs [data-baseweb="tab"]{
-  background: rgba(255,255,255,0.85);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 8px 14px;
-  color: rgba(15,23,42,0.75);
+.stTabs [data-baseweb="tab-list"] {
+  gap: 0.5rem;
+  background: var(--bg-tertiary);
+  padding: 0.25rem;
+  border-radius: var(--radius-md);
 }
-.stTabs [aria-selected="true"]{
-  background: rgba(124,58,237,0.12);
-  border: 1px solid rgba(124,58,237,0.26);
-  color: rgba(15,23,42,0.92);
+
+.stTabs [data-baseweb="tab"] {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.stTabs [aria-selected="true"] {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Buttons */
-.stButton > button, .stDownloadButton > button{
-  border-radius: 14px !important;
-  border: 1px solid var(--border) !important;
-  background: linear-gradient(180deg, rgba(124,58,237,0.14), rgba(6,182,212,0.10)) !important;
-  color: var(--text) !important;
-  font-weight: 800 !important;
+.stButton > button, .stDownloadButton > button {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Dataframe */
-div[data-testid="stDataFrame"]{
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--border) !important;
-  background: rgba(255,255,255,0.92) !important;
+.stButton > button:hover, .stDownloadButton > button:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* DataFrames */
+div[data-testid="stDataFrame"] {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Expander */
+.streamlit-expanderHeader {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  font-weight: 500;
 }
 
 /* Links */
-a { color: var(--indigo) !important; }
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+  
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-description {
+    display: none;
+  }
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -197,35 +305,29 @@ a { color: var(--indigo) !important; }
 # =========================
 # UI HELPERS
 # =========================
-def panel_start(tight: bool = False):
-    klass = "panel panel-tight" if tight else "panel"
+def card_start(compact: bool = False):
+    klass = "card card-compact" if compact else "card"
     st.markdown(f"<div class='{klass}'>", unsafe_allow_html=True)
 
-
-def panel_end():
+def card_end():
     st.markdown("</div>", unsafe_allow_html=True)
 
-
-def section_header(title: str, desc: str = "", color: str = "var(--indigo)"):
+def section_header(title: str, desc: str = ""):
     st.markdown(
         f"""
-<div class="section">
-  <div class="dot" style="background:{color};"></div>
-  <div>
-    <div class="section-title">{title}</div>
-    {f"<div class='section-desc'>{desc}</div>" if desc else ""}
-  </div>
+<div class="section-header">
+  <div class="section-icon"></div>
+  <h3 class="section-title">{title}</h3>
+  {f'<span class="section-description">{desc}</span>' if desc else ''}
 </div>
 """,
         unsafe_allow_html=True,
     )
 
-
-def metric_card(label: str, value: str, delta: str, tooltip: str, variant: str = "indigo"):
-    cls = variant if variant in {"indigo", "purple", "cyan", "orange", "green", "red"} else "indigo"
+def metric_card(label: str, value: str, delta: str):
     st.markdown(
         f"""
-<div class="metric {cls}" title="{tooltip}">
+<div class="metric-card">
   <div class="metric-label">{label}</div>
   <div class="metric-value">{value}</div>
   <div class="metric-delta">{delta}</div>
@@ -234,34 +336,25 @@ def metric_card(label: str, value: str, delta: str, tooltip: str, variant: str =
         unsafe_allow_html=True,
     )
 
-
 def format_int_br(x):
     try:
         return f"{int(round(float(x))):,}".replace(",", ".")
     except Exception:
         return "0"
 
-
 def futuristic_plotly_light(fig, title=None):
-    """
-    Visual futurista em tema claro:
-    - colorway neon (roxo/ciano/laranja/verde)
-    - fundo transparente
-    - grid sutil
-    - legenda em "pill" clara
-    """
     fig.update_layout(
         template="plotly_white",
         title=title if title else fig.layout.title,
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        margin=dict(l=10, r=10, t=65, b=10),
-        font=dict(color="rgba(15,23,42,0.86)", size=13),
-        title_font=dict(size=16, color="rgba(15,23,42,0.95)"),
-        colorway=["#7c3aed", "#06b6d4", "#f97316", "#22c55e", "#ef4444", "#4f46e5"],
+        margin=dict(l=10, r=10, t=50, b=10),
+        font=dict(color="#1a1f36", size=13),
+        title_font=dict(size=15, color="#1a1f36", family="Arial"),
+        colorway=["#5469d4", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444"],
         legend=dict(
-            bgcolor="rgba(255,255,255,0.86)",
-            bordercolor="rgba(15,23,42,0.10)",
+            bgcolor="rgba(255,255,255,0.9)",
+            bordercolor="rgba(203,210,217,0.5)",
             borderwidth=1,
             orientation="h",
             yanchor="bottom",
@@ -272,18 +365,12 @@ def futuristic_plotly_light(fig, title=None):
         hoverlabel=dict(
             bgcolor="white",
             font_size=12,
-            font_family="Arial",
-            bordercolor="rgba(15,23,42,0.10)",
+            bordercolor="#e3e8ee",
         ),
     )
-    fig.update_xaxes(showgrid=True, gridcolor="rgba(15,23,42,0.06)", zeroline=False)
-    fig.update_yaxes(showgrid=True, gridcolor="rgba(15,23,42,0.06)", zeroline=False)
-    try:
-        fig.update_traces(marker=dict(line=dict(width=0.8, color="rgba(15,23,42,0.20)"), opacity=0.92))
-    except Exception:
-        pass
+    fig.update_xaxes(showgrid=True, gridcolor="rgba(227,232,238,0.5)", zeroline=False)
+    fig.update_yaxes(showgrid=True, gridcolor="rgba(227,232,238,0.5)", zeroline=False)
     return fig
-
 
 def download_csv_button(df: pd.DataFrame, filename: str, label: str, key: str):
     csv = df.to_csv(index=False).encode("utf-8")
@@ -296,20 +383,15 @@ def download_csv_button(df: pd.DataFrame, filename: str, label: str, key: str):
         key=key,
     )
 
-
 # =========================
 # DATA EXTRACTION
 # =========================
 def extract_seo_metrics(json_path):
-    """
-    Extrai métricas de SEO do arquivo JSON (campo: conteudo).
-    """
     try:
         with open(json_path, "r", encoding="utf-8") as file:
             data = json.load(file)
             conteudo = data.get("conteudo", "")
 
-            # Extrair grupo e marca do caminho do arquivo
             path_parts = str(Path(json_path)).split(os.sep)
             grupo = path_parts[-3] if len(path_parts) > 2 else ""
             marca = path_parts[-2] if len(path_parts) > 1 else ""
@@ -337,12 +419,10 @@ def extract_seo_metrics(json_path):
                 "top_palavras": [],
             }
 
-            # Extrair domínio
             domain_match = re.search(r"domínio: ([\w\.]+)", conteudo)
             if domain_match:
                 metrics["dominio"] = domain_match.group(1)
 
-            # Extrair métricas básicas
             for line in conteudo.split("\n"):
                 if "Tráfego estimado:" in line and "Resumo da Busca Orgânica" in conteudo.split(line)[0][-50:]:
                     metrics["trafego_organico"] = extract_number(line)
@@ -355,7 +435,6 @@ def extract_seo_metrics(json_path):
                 elif "Posição no ranking" in line:
                     metrics["posicao_media"] = extract_number(line)
 
-            # Distribuição de países
             paises_section = re.search(
                 r"Distribuição das Palavras-chave por País \(Busca Orgânica\):(.*?)(?=\n\n)",
                 conteudo,
@@ -368,7 +447,6 @@ def extract_seo_metrics(json_path):
                         pais = pais.replace("-", "").strip()
                         metrics["distribuicao_paises"][pais] = extract_number(percentual)
 
-            # Intenção das palavras-chave
             intencao_section = re.search(r"Intenção das Palavras-chave:(.*?)(?=\n\n)", conteudo, re.DOTALL)
             if intencao_section:
                 for line in intencao_section.group(1).split("\n"):
@@ -384,7 +462,6 @@ def extract_seo_metrics(json_path):
                             "percentual": percentual,
                         }
 
-            # Palavras-chave mais buscadas
             palavras_section = re.search(
                 r"Principais Palavras-chave Orgânicas:(.*?)(?=\n\nDistribuição das Posições)",
                 conteudo,
@@ -410,7 +487,6 @@ def extract_seo_metrics(json_path):
         print(f"Erro ao processar {json_path}: {str(e)}")
         return None
 
-
 @st.cache_data(show_spinner=False)
 def load_seo_data(base_dir="analise-performance"):
     all_data = []
@@ -427,13 +503,16 @@ def load_seo_data(base_dir="analise-performance"):
 
     return pd.DataFrame(all_data), file_count
 
-
 # =========================
 # HEADER
 # =========================
-st.markdown("<div class='h-title'>SEO Grupo Líder</div>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='h-sub'>Tema claro • UI moderna • gráficos futuristas • insights automáticos (portfolio-ready)</div>",
+    """
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Análise SEO Grupo Líder</h1>
+  <p class="dashboard-subtitle">Monitoramento de performance e análise competitiva</p>
+</div>
+""",
     unsafe_allow_html=True,
 )
 
@@ -443,45 +522,45 @@ if df_seo is None or df_seo.empty:
     st.warning("Nenhum dado de SEO encontrado. Verifique se os arquivos JSON estão no diretório correto.")
     st.stop()
 
-# Flags
 df_seo["is_lider"] = df_seo["grupo"].astype(str).str.lower().str.contains("lider")
 df_seo["marca_display"] = df_seo.apply(
     lambda x: f"{x['marca']} (Grupo Líder)" if x["is_lider"] else x["marca"], axis=1
 )
 
 # =========================
-# TOP FILTER BAR (robusto e bonito)
+# FILTROS
 # =========================
-panel_start(tight=True)
-c1, c2, c3, c4 = st.columns([1.35, 1.55, 1.15, 0.95])
+card_start(compact=True)
+col1, col2, col3, col4 = st.columns([1.5, 2, 1.2, 1])
 
-with c1:
+with col1:
     modo = st.segmented_control(
         "Visão",
         options=["Todos", "Só Grupo Líder", "Só Concorrentes"],
         default="Todos",
     )
 
-with c2:
+with col2:
     marcas = sorted(df_seo["marca_display"].dropna().unique().tolist())
-    sel_marcas = st.multiselect("Marcas (opcional)", options=marcas, default=[])
+    sel_marcas = st.multiselect("Filtrar por marcas", options=marcas, default=[])
 
-with c3:
-    top_n = st.slider("Top concorrentes (por tráfego)", 3, 15, 5, 1)
+with col3:
+    top_n = st.slider("Top concorrentes", 3, 15, 5, 1)
 
-with c4:
+with col4:
     st.markdown(
         f"""
-<span class="chip">🧾 JSONs: <b>{json_files}</b></span><br/>
-<span class="chip">⏱️ {datetime.now().strftime("%d/%m %H:%M")}</span>
+<div style="text-align: right; padding-top: 0.5rem;">
+  <span class="badge">{json_files} arquivos</span>
+  <span class="badge">{datetime.now().strftime("%d/%m %H:%M")}</span>
+</div>
 """,
         unsafe_allow_html=True,
     )
 
-panel_end()
-st.markdown(" ")
+card_end()
 
-# Apply filters
+# Aplicar filtros
 df_view = df_seo.copy()
 
 if modo == "Só Grupo Líder":
@@ -493,28 +572,21 @@ if sel_marcas:
     df_view = df_view[df_view["marca_display"].isin(sel_marcas)]
 
 if df_view.empty:
-    st.info("Com os filtros atuais, não há dados para exibir.")
+    st.info("Nenhum dado disponível com os filtros selecionados.")
     st.stop()
 
 # =========================
-# RECRUITER-WOW: RESUMO EXECUTIVO + QUADRANTE OPORTUNIDADE
+# FUNÇÕES AUXILIARES
 # =========================
 def numeric(series):
     return pd.to_numeric(series, errors="coerce").fillna(0)
 
+# =========================
+# RESUMO EXECUTIVO
+# =========================
+card_start()
+section_header("Resumo Executivo", "Principais indicadores e oportunidades")
 
-panel_start()
-section_header(
-    "Resumo executivo (auto insights)",
-    "Um bloco de leitura rápida para tomada de decisão (e demonstração de produto).",
-    color="var(--purple)",
-)
-
-trafego_total = float(numeric(df_view["trafego_organico"]).sum())
-kw_total = float(numeric(df_view["palavras_chave_organicas"]).sum())
-back_total = float(numeric(df_view["backlinks"]).sum())
-
-# melhores
 tmp = df_view.copy()
 tmp["trafego_organico"] = numeric(tmp["trafego_organico"])
 tmp["palavras_chave_organicas"] = numeric(tmp["palavras_chave_organicas"])
@@ -524,58 +596,50 @@ best_traf = tmp.loc[tmp["trafego_organico"].idxmax()] if not tmp.empty else None
 best_kw = tmp.loc[tmp["palavras_chave_organicas"].idxmax()] if not tmp.empty else None
 best_back = tmp.loc[tmp["backlinks"].idxmax()] if not tmp.empty else None
 
-i1, i2, i3 = st.columns(3)
-with i1:
+col1, col2, col3 = st.columns(3)
+with col1:
     st.markdown(
-        f"<span class='chip'>🏁 Maior tráfego: <b>{best_traf['marca_display']}</b></span><br/>"
-        f"<span class='chip'>↳ {format_int_br(best_traf['trafego_organico'])} visitas/mês</span>",
-        unsafe_allow_html=True,
-    )
-with i2:
-    st.markdown(
-        f"<span class='chip'>🔎 Maior keywords: <b>{best_kw['marca_display']}</b></span><br/>"
-        f"<span class='chip'>↳ {format_int_br(best_kw['palavras_chave_organicas'])} keywords</span>",
-        unsafe_allow_html=True,
-    )
-with i3:
-    st.markdown(
-        f"<span class='chip'>🔗 Maior backlinks: <b>{best_back['marca_display']}</b></span><br/>"
-        f"<span class='chip'>↳ {format_int_br(best_back['backlinks'])} backlinks</span>",
-        unsafe_allow_html=True,
-    )
-
-st.markdown(
-    f"""
-<br/>
-<span class="chip">📦 Cobertura: <b>{format_int_br(trafego_total)}</b> visitas/mês</span>
-<span class="chip">🧠 Keywords: <b>{format_int_br(kw_total)}</b></span>
-<span class="chip">🧷 Backlinks: <b>{format_int_br(back_total)}</b></span>
+        f"""
+<span class="badge badge-primary">Maior tráfego: {best_traf['marca_display']}</span><br>
+<span class="badge">{format_int_br(best_traf['trafego_organico'])} visitas/mês</span>
 """,
-    unsafe_allow_html=True,
-)
+        unsafe_allow_html=True,
+    )
+with col2:
+    st.markdown(
+        f"""
+<span class="badge badge-primary">Maior cobertura: {best_kw['marca_display']}</span><br>
+<span class="badge">{format_int_br(best_kw['palavras_chave_organicas'])} palavras-chave</span>
+""",
+        unsafe_allow_html=True,
+    )
+with col3:
+    st.markdown(
+        f"""
+<span class="badge badge-primary">Maior autoridade: {best_back['marca_display']}</span><br>
+<span class="badge">{format_int_br(best_back['backlinks'])} backlinks</span>
+""",
+        unsafe_allow_html=True,
+    )
 
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
-# Quadrante oportunidade: backlinks alto e tráfego baixo
+# Análise de oportunidades
 q = tmp[["marca_display", "is_lider", "trafego_organico", "backlinks", "palavras_chave_organicas", "dominio"]].copy()
-q["trafego_organico"] = numeric(q["trafego_organico"])
-q["backlinks"] = numeric(q["backlinks"])
-q["palavras_chave_organicas"] = numeric(q["palavras_chave_organicas"])
-
 traf_med = q["trafego_organico"].median() if not q.empty else 0
 back_med = q["backlinks"].median() if not q.empty else 0
 
-q["quadrante"] = "—"
-q.loc[(q["backlinks"] >= back_med) & (q["trafego_organico"] < traf_med), "quadrante"] = "Oportunidade (autoridade alta, tráfego baixo)"
-q.loc[(q["backlinks"] >= back_med) & (q["trafego_organico"] >= traf_med), "quadrante"] = "Líderes (autoridade alta, tráfego alto)"
-q.loc[(q["backlinks"] < back_med) & (q["trafego_organico"] >= traf_med), "quadrante"] = "Tráfego alto (autoridade baixa)"
-q.loc[(q["backlinks"] < back_med) & (q["trafego_organico"] < traf_med), "quadrante"] = "Em construção (baixo/baixo)"
+q["quadrante"] = ""
+q.loc[(q["backlinks"] >= back_med) & (q["trafego_organico"] < traf_med), "quadrante"] = "Oportunidade"
+q.loc[(q["backlinks"] >= back_med) & (q["trafego_organico"] >= traf_med), "quadrante"] = "Líderes"
+q.loc[(q["backlinks"] < back_med) & (q["trafego_organico"] >= traf_med), "quadrante"] = "Alto tráfego"
+q.loc[(q["backlinks"] < back_med) & (q["trafego_organico"] < traf_med), "quadrante"] = "Em desenvolvimento"
 
-top_op = q[q["quadrante"].str.contains("Oportunidade")].sort_values("backlinks", ascending=False).head(5)
+top_op = q[q["quadrante"] == "Oportunidade"].sort_values("backlinks", ascending=False).head(5)
 
-st.markdown("**🎯 Top oportunidades (Backlinks alto + Tráfego baixo)**")
+st.markdown("**Oportunidades Identificadas** — Alta autoridade, baixo tráfego")
 if top_op.empty:
-    st.caption("Nenhuma marca caiu no quadrante de oportunidade com os filtros atuais.")
+    st.caption("Nenhuma oportunidade identificada com os filtros atuais.")
 else:
     st.dataframe(
         top_op[["marca_display", "dominio", "backlinks", "trafego_organico", "palavras_chave_organicas"]],
@@ -585,24 +649,23 @@ else:
             "marca_display": "Marca",
             "dominio": "Domínio",
             "backlinks": st.column_config.NumberColumn("Backlinks", format="%d"),
-            "trafego_organico": st.column_config.NumberColumn("Tráfego Orgânico", format="%d"),
+            "trafego_organico": st.column_config.NumberColumn("Tráfego", format="%d"),
             "palavras_chave_organicas": st.column_config.NumberColumn("Palavras-chave", format="%d"),
         },
     )
 
-panel_end()
-st.markdown(" ")
+card_end()
 
 # =========================
 # TABS
 # =========================
-tab1, tab2 = st.tabs(["📊 Visão Geral", "📈 Análise Competitiva"])
+tab1, tab2 = st.tabs(["Visão Geral", "Análise Competitiva"])
 
 # =========================
 # TAB 1 — VISÃO GERAL
 # =========================
 with tab1:
-    # KPIs do Grupo Líder (dataset completo)
+    # KPIs do Grupo Líder
     df_lider = df_seo[df_seo["is_lider"]].copy()
     df_lider["trafego_organico"] = numeric(df_lider["trafego_organico"])
     df_lider["palavras_chave_organicas"] = numeric(df_lider["palavras_chave_organicas"])
@@ -615,155 +678,110 @@ with tab1:
     trafego_total_all = float(numeric(df_seo["trafego_organico"]).sum())
     share_lider = (trafego_lider / trafego_total_all * 100) if trafego_total_all > 0 else 0
 
-    panel_start()
-    section_header(
-        "KPIs do Grupo Líder",
-        "Cards compactos, arredondados e com destaque de cor (visual de produto).",
-        color="var(--indigo)",
-    )
+    card_start()
+    section_header("Indicadores do Grupo Líder")
+    
     st.markdown("<div class='metric-grid'>", unsafe_allow_html=True)
-
-    metric_card(
-        "Tráfego Orgânico Total",
-        format_int_br(trafego_lider),
-        "visitas/mês",
-        "Total de visitas mensais das marcas do Grupo Líder",
-        variant="cyan",
-    )
-    metric_card(
-        "Palavras-chave Orgânicas",
-        format_int_br(palavras_lider),
-        "keywords ranqueadas",
-        "Soma de palavras-chave das marcas do Grupo Líder",
-        variant="purple",
-    )
-    metric_card(
-        "Domínios de Referência",
-        format_int_br(dominios_lider),
-        "domínios únicos",
-        "Total de domínios que apontam links para o Grupo Líder",
-        variant="green",
-    )
-    metric_card(
-        "Share de Tráfego (vs mercado)",
-        f"{share_lider:.1f}%".replace(".", ","),
-        "Grupo Líder vs concorrentes",
-        "Porcentagem do tráfego total que pertence ao Grupo Líder",
-        variant="orange",
-    )
-
+    metric_card("Tráfego Orgânico", format_int_br(trafego_lider), "visitas mensais")
+    metric_card("Palavras-chave", format_int_br(palavras_lider), "termos ranqueados")
+    metric_card("Domínios de Referência", format_int_br(dominios_lider), "fontes únicas")
+    metric_card("Market Share", f"{share_lider:.1f}%".replace(".", ","), "participação de mercado")
     st.markdown("</div>", unsafe_allow_html=True)
-    panel_end()
-    st.markdown(" ")
+    
+    card_end()
 
-    # Palavras-chave (Grupo Líder)
-    panel_start()
-    section_header(
-        "Palavras-chave mais buscadas (Grupo Líder)",
-        "Top termos que puxam volume — com export para CSV.",
-        color="var(--cyan)",
-    )
+    # Palavras-chave principais
+    card_start()
+    section_header("Principais Palavras-chave", "Termos com maior volume de buscas")
 
-    keywords_data = {"Palavra-chave": [], "Volume de Buscas": [], "% Tráfego": [], "Marca": []}
+    keywords_data = {"Palavra-chave": [], "Volume": [], "Tráfego": [], "Marca": []}
     for _, row in df_lider.iterrows():
         for kw in row.get("top_palavras", []) or []:
             keywords_data["Palavra-chave"].append(kw.get("palavra", ""))
-            keywords_data["Volume de Buscas"].append(kw.get("volume", 0))
-            keywords_data["% Tráfego"].append(kw.get("trafego", 0))
+            keywords_data["Volume"].append(kw.get("volume", 0))
+            keywords_data["Tráfego"].append(kw.get("trafego", 0))
             keywords_data["Marca"].append(row.get("marca", ""))
 
     df_keywords = pd.DataFrame(keywords_data)
     if not df_keywords.empty:
-        df_keywords = df_keywords.sort_values("Volume de Buscas", ascending=False)
+        df_keywords = df_keywords.sort_values("Volume", ascending=False)
 
-        cA, cB = st.columns([0.78, 0.22])
-        with cB:
-            download_csv_button(df_keywords, "grupo_lider_keywords.csv", "⬇️ Baixar CSV", key="dl_keywords")
+        col_a, col_b = st.columns([0.8, 0.2])
+        with col_b:
+            download_csv_button(df_keywords, "palavras_chave.csv", "Exportar CSV", key="dl_kw")
 
         st.dataframe(
             df_keywords,
             use_container_width=True,
             hide_index=True,
-            height=420,
+            height=400,
             column_config={
-                "Volume de Buscas": st.column_config.NumberColumn("Volume de Buscas", format="%d"),
-                "% Tráfego": st.column_config.NumberColumn("% Tráfego", format="%.2f"),
+                "Volume": st.column_config.NumberColumn("Volume", format="%d"),
+                "Tráfego": st.column_config.NumberColumn("Tráfego", format="%.1f"),
             },
         )
     else:
-        st.info("Não encontrei palavras-chave no campo `top_palavras` das marcas do Grupo Líder.")
+        st.info("Dados de palavras-chave não disponíveis.")
 
-    panel_end()
-    st.markdown(" ")
+    card_end()
 
-    # Top Concorrentes por tráfego (a partir do df_view filtrado)
+    # Top Concorrentes
     df_concorrentes = df_view[~df_view["is_lider"]].copy()
     df_concorrentes["trafego_organico"] = numeric(df_concorrentes["trafego_organico"])
     df_concorrentes["palavras_chave_organicas"] = numeric(df_concorrentes["palavras_chave_organicas"])
     df_concorrentes["backlinks"] = numeric(df_concorrentes["backlinks"])
     df_concorrentes["dominos_referencia"] = numeric(df_concorrentes["dominos_referencia"])
 
-    panel_start()
-    section_header(
-        f"Top {top_n} concorrentes por tráfego",
-        "Ranking prático para comparativo rápido + gráfico neon em tema claro.",
-        color="var(--orange)",
-    )
+    card_start()
+    section_header(f"Top {top_n} Concorrentes", "Ranking por tráfego orgânico")
 
     if not df_concorrentes.empty:
         df_top = df_concorrentes.nlargest(top_n, "trafego_organico").copy()
 
-        tbl = pd.DataFrame(
-            {
-                "Concorrente": df_top["marca_display"],
-                "Domínio": df_top["dominio"],
-                "Tráfego Orgânico": df_top["trafego_organico"].round(0).astype(int),
-                "Palavras-chave": df_top["palavras_chave_organicas"].round(0).astype(int),
-                "Backlinks": df_top["backlinks"].round(0).astype(int),
-                "Domínios Ref.": df_top["dominos_referencia"].round(0).astype(int),
-            }
-        )
+        tbl = pd.DataFrame({
+            "Marca": df_top["marca_display"],
+            "Domínio": df_top["dominio"],
+            "Tráfego": df_top["trafego_organico"].round(0).astype(int),
+            "Palavras-chave": df_top["palavras_chave_organicas"].round(0).astype(int),
+            "Backlinks": df_top["backlinks"].round(0).astype(int),
+            "Domínios Ref.": df_top["dominos_referencia"].round(0).astype(int),
+        })
 
-        cA, cB = st.columns([0.78, 0.22])
-        with cB:
-            download_csv_button(tbl, "top_concorrentes.csv", "⬇️ Baixar CSV", key="dl_top_conc")
+        col_a, col_b = st.columns([0.8, 0.2])
+        with col_b:
+            download_csv_button(tbl, "top_concorrentes.csv", "Exportar CSV", key="dl_top")
 
         st.dataframe(
             tbl,
             use_container_width=True,
             hide_index=True,
             column_config={
-                "Tráfego Orgânico": st.column_config.NumberColumn("Tráfego Orgânico", format="%d"),
+                "Tráfego": st.column_config.NumberColumn("Tráfego", format="%d"),
                 "Palavras-chave": st.column_config.NumberColumn("Palavras-chave", format="%d"),
                 "Backlinks": st.column_config.NumberColumn("Backlinks", format="%d"),
                 "Domínios Ref.": st.column_config.NumberColumn("Domínios Ref.", format="%d"),
             },
         )
 
-        st.markdown(" ")
+        st.markdown("<br>", unsafe_allow_html=True)
 
         fig_traf = px.bar(
             df_top,
             x="marca_display",
             y="trafego_organico",
-            title="Tráfego Orgânico Mensal — Concorrentes",
+            title="Tráfego Orgânico por Concorrente",
             labels={"marca_display": "Marca", "trafego_organico": "Visitas/mês"},
         )
         fig_traf = futuristic_plotly_light(fig_traf)
         st.plotly_chart(fig_traf, use_container_width=True)
     else:
-        st.info("Com os filtros atuais, não existem concorrentes para ranquear.")
+        st.info("Nenhum concorrente disponível com os filtros atuais.")
 
-    panel_end()
-    st.markdown(" ")
+    card_end()
 
-    # Participação por marca (df_view)
-    panel_start()
-    section_header(
-        "Participação por marca (tráfego × keywords)",
-        "Comparação de volume e cobertura de palavras-chave.",
-        color="var(--green)",
-    )
+    # Comparativo por marca
+    card_start()
+    section_header("Comparativo por Marca", "Tráfego e cobertura de palavras-chave")
 
     grouped = (
         df_view.assign(
@@ -780,36 +798,20 @@ with tab1:
         x="marca_display",
         y=["trafego_organico", "palavras_chave_organicas"],
         barmode="group",
-        title="Tráfego e Keywords por Marca",
+        title="Tráfego e Palavras-chave por Marca",
         labels={"value": "Volume", "variable": "Métrica", "marca_display": "Marca"},
     )
     fig_mix = futuristic_plotly_light(fig_mix)
     st.plotly_chart(fig_mix, use_container_width=True)
 
-    panel_end()
-
-    # Diferenciais técnicos (para recrutador)
-    with st.expander("✨ Diferenciais técnicos (para recrutadores)", expanded=False):
-        st.markdown(
-            """
-- **Performance/robustez:** `@st.cache_data` para acelerar a leitura e re-render.
-- **UX de produto:** filtros globais, export CSV, cards consistentes, layout responsivo.
-- **Análise orientada a decisão:** “Resumo executivo” + quadrante de oportunidades.
-- **Boas práticas Streamlit:** `key` em downloads (evita `StreamlitDuplicateElementId`).
-- **Data storytelling:** gráficos com estética “neon” em tema claro + hover informativo.
-"""
-        )
+    card_end()
 
 # =========================
-# TAB 2 — COMPETITIVO
+# TAB 2 — ANÁLISE COMPETITIVA
 # =========================
 with tab2:
-    panel_start()
-    section_header(
-        "Mapa competitivo: Backlinks × Posição Média",
-        "Bolha maior = mais tráfego. Posição menor = melhor. (backlinks em escala log)",
-        color="var(--purple)",
-    )
+    card_start()
+    section_header("Mapa Competitivo", "Autoridade vs Ranking (tamanho = tráfego)")
 
     df_plot = df_view.copy()
     df_plot["backlinks"] = numeric(df_plot["backlinks"])
@@ -824,16 +826,17 @@ with tab2:
         size="trafego_organico",
         color="is_lider",
         hover_data=["marca_display", "dominio", "trafego_organico", "palavras_chave_organicas"],
-        title="Autoridade (Backlinks) vs Ranking (Posição Média)",
+        title="Backlinks vs Posição Média",
         labels={
-            "backlinks": "Backlinks (log)",
-            "posicao_media": "Posição média (↓ melhor)",
+            "backlinks": "Backlinks (escala log)",
+            "posicao_media": "Posição Média (menor = melhor)",
             "is_lider": "Grupo",
         },
-        color_discrete_map={True: "#7c3aed", False: "#f97316"},
+        color_discrete_map={True: "#5469d4", False: "#f59e0b"},
     )
 
     fig_scatter.update_xaxes(type="log")
+    
     if len(fig_scatter.data) >= 1:
         for tr in fig_scatter.data:
             if str(tr.name) in ("True", "true"):
@@ -848,21 +851,16 @@ with tab2:
         "Tráfego: %{customdata[2]:,.0f}<br>"
         "Keywords: %{customdata[3]:,.0f}<br>"
         "Backlinks: %{x:,.0f}<br>"
-        "Posição média: %{y:,.0f}<br>"
+        "Posição média: %{y:,.1f}<br>"
         "<extra></extra>"
     )
 
     st.plotly_chart(fig_scatter, use_container_width=True)
-    panel_end()
-    st.markdown(" ")
+    card_end()
 
-    # Tabela agregada
-    panel_start()
-    section_header(
-        "Tabela completa (métricas agregadas por marca)",
-        "Resumo por marca com export — ótimo para auditoria e apresentação.",
-        color="var(--cyan)",
-    )
+    # Tabela completa
+    card_start()
+    section_header("Métricas Consolidadas", "Todos os indicadores por marca")
 
     metricas = (
         df_view.assign(
@@ -873,51 +871,71 @@ with tab2:
             posicao_media=numeric(df_view["posicao_media"]),
         )
         .groupby("marca_display")
-        .agg(
-            {
-                "trafego_organico": "sum",
-                "palavras_chave_organicas": "sum",
-                "backlinks": "sum",
-                "dominos_referencia": "sum",
-                "posicao_media": "mean",
-            }
-        )
+        .agg({
+            "trafego_organico": "sum",
+            "palavras_chave_organicas": "sum",
+            "backlinks": "sum",
+            "dominos_referencia": "sum",
+            "posicao_media": "mean",
+        })
         .reset_index()
-        .rename(
-            columns={
-                "marca_display": "Marca",
-                "trafego_organico": "Tráfego Orgânico",
-                "palavras_chave_organicas": "Palavras-chave",
-                "backlinks": "Backlinks",
-                "dominos_referencia": "Domínios Referência",
-                "posicao_media": "Posição Média",
-            }
-        )
+        .rename(columns={
+            "marca_display": "Marca",
+            "trafego_organico": "Tráfego",
+            "palavras_chave_organicas": "Palavras-chave",
+            "backlinks": "Backlinks",
+            "dominos_referencia": "Domínios Ref.",
+            "posicao_media": "Posição Média",
+        })
     )
 
-    cA, cB = st.columns([0.78, 0.22])
-    with cB:
-        download_csv_button(metricas, "metricas_competitivas.csv", "⬇️ Baixar CSV", key="dl_metricas")
+    col_a, col_b = st.columns([0.8, 0.2])
+    with col_b:
+        download_csv_button(metricas, "metricas_consolidadas.csv", "Exportar CSV", key="dl_metricas")
 
     st.dataframe(
         metricas,
         use_container_width=True,
         hide_index=True,
         column_config={
-            "Tráfego Orgânico": st.column_config.NumberColumn("Tráfego Orgânico", format="%d"),
+            "Tráfego": st.column_config.NumberColumn("Tráfego", format="%d"),
             "Palavras-chave": st.column_config.NumberColumn("Palavras-chave", format="%d"),
             "Backlinks": st.column_config.NumberColumn("Backlinks", format="%d"),
-            "Domínios Referência": st.column_config.NumberColumn("Domínios Referência", format="%d"),
+            "Domínios Ref.": st.column_config.NumberColumn("Domínios Ref.", format="%d"),
             "Posição Média": st.column_config.NumberColumn("Posição Média", format="%.2f"),
         },
     )
 
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
         """
-<span class="chip">📌 Posição média: quanto mais perto de <b>1</b>, melhor.</span>
-<span class="chip">🧠 Dica: “autoridade alta + tráfego baixo” tende a ser o melhor alvo de otimização.</span>
+<span class="badge">Posição média mais próxima de 1 indica melhor ranqueamento</span>
+<span class="badge">Autoridade alta + tráfego baixo = oportunidade de otimização</span>
 """,
         unsafe_allow_html=True,
     )
 
-    panel_end()
+    card_end()
+
+# =========================
+# NOTAS TÉCNICAS
+# =========================
+with st.expander("Notas Técnicas", expanded=False):
+    st.markdown(
+        """
+**Performance:**
+- Cache de dados com `@st.cache_data` para otimização de carregamento
+- Processamento eficiente de múltiplos arquivos JSON
+
+**Funcionalidades:**
+- Filtros dinâmicos por visão e marcas específicas
+- Exportação de dados em CSV
+- Gráficos interativos com Plotly
+- Análise de quadrantes para identificação de oportunidades
+
+**Análise:**
+- Identificação automática de oportunidades (alta autoridade, baixo tráfego)
+- Comparação competitiva multi-dimensional
+- Métricas consolidadas e detalhadas
+"""
+    )
