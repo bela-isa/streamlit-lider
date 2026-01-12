@@ -688,21 +688,24 @@ with st.container(border=True):
             help="Filtra o dataset por grupo.",
         )
 
-    with c3:
-        top_n = st.slider("Top concorrentes", 3, 15, 5, 1, help="Ranking por tráfego orgânico")
+    # with c3:
+        # top_n = st.slider("Top concorrentes", 3, 15, 5, 1, help="Ranking por tráfego orgânico")
 
-    with c4:
-        marcas = sorted(df_seo["marca_display"].dropna().unique().tolist())
-        sel_marcas = st.multiselect("Marcas", options=marcas, default=[], help="Opcional")
+    # with c4:
+        # marcas = sorted(df_seo["marca_display"].dropna().unique().tolist())
+        # sel_marcas = st.multiselect("Marcas", options=marcas, default=[], help="Opcional")
 
-    with c5:
-        st.markdown(
-            f"""
-<div style="text-align:right; padding-top: 0.25rem;">
-  #<span class="chip" title="Quantidade de arquivos lidos">🧾 {json_files} arquivos</span><br>
-  #<span class="chip" title="Horário do render">⏱️ {datetime.now().strftime("%d/%m %H:%M")}</span>
-</div>
-""",
+    # with c5:
+    #     st.markdown(
+    #         f"""
+    # <div style="text-align:right; padding-top: 0.25rem;">
+    #   <span class="chip" title="Quantidade de arquivos lidos">🧾 {json_files} arquivos</span><br>
+    #   <span class="chip" title="Horário do render">⏱️ {datetime.now().strftime("%d/%m %H:%M")}</span>
+    # </div>
+    # """,
+    #         unsafe_allow_html=True,
+    #     )
+
             unsafe_allow_html=True,
         )
 
