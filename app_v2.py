@@ -685,7 +685,7 @@ st.markdown(
 <div class="dashboard-header">
   <h1 class="dashboard-title">Análise SEO Grupo Líder</h1>
   <p class="dashboard-subtitle">Monitoramento de performance e análise competitiva</p>
-  <div class="dashboard-meta">  {st.session_state.ui_theme}</div>
+  <div class="dashboard-meta">  </div>
 </div>
 """,
     unsafe_allow_html=True,
