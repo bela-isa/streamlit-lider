@@ -688,12 +688,12 @@ with st.container(border=True):
             help="Filtra o dataset por grupo.",
         )
 
-    # with c3:
-        # top_n = st.slider("Top concorrentes", 3, 15, 5, 1, help="Ranking por tráfego orgânico")
+     with c3:
+         top_n = st.slider("Top concorrentes", 3, 15, 5, 1, help="Ranking por tráfego orgânico")
 
-    # with c4:
-        # marcas = sorted(df_seo["marca_display"].dropna().unique().tolist())
-        # sel_marcas = st.multiselect("Marcas", options=marcas, default=[], help="Opcional")
+     with c4:
+         marcas = sorted(df_seo["marca_display"].dropna().unique().tolist())
+         sel_marcas = st.multiselect("Marcas", options=marcas, default=[], help="Opcional")
 
     # with c5:
     #     st.markdown(
