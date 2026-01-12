@@ -646,7 +646,7 @@ st.markdown(
 <div class="dashboard-header">
   <h1 class="dashboard-title">Análise SEO Grupo Líder</h1>
   <p class="dashboard-subtitle">Monitoramento de performance e análise competitiva</p>
-  <div class="dashboard-meta">Passe o mouse nos cards • Export CSV • Tema {st.session_state.ui_theme}</div>
+  
 </div>
 """,
     unsafe_allow_html=True,
@@ -668,15 +668,16 @@ df_seo["marca_display"] = df_seo.apply(
 with st.container(border=True):
     c1, c2, c3, c4, c5 = st.columns([1.25, 2.0, 1.05, 1.25, 0.9])
 
-    with c1:
-        st.session_state.ui_theme = st.segmented_control(
-            "Tema",
-            options=["Claro", "Escuro"],
-            default=st.session_state.ui_theme,
-            key="theme_picker",
-            help="Alterna o tema da interface.",
-        )
-        apply_theme(st.session_state.ui_theme)
+    # with c1:
+    #     st.session_state.ui_theme = st.segmented_control(
+    #         "Tema",
+    #         options=["Claro", "Escuro"],
+    #         default=st.session_state.ui_theme,
+    #         key="theme_picker",
+    #         help="Alterna o tema da interface.",
+    #     )
+    #     apply_theme(st.session_state.ui_theme)
+
 
     with c2:
         modo = st.segmented_control(
@@ -698,8 +699,8 @@ with st.container(border=True):
         st.markdown(
             f"""
 <div style="text-align:right; padding-top: 0.25rem;">
-  <span class="chip" title="Quantidade de arquivos lidos">🧾 {json_files} arquivos</span><br>
-  <span class="chip" title="Horário do render">⏱️ {datetime.now().strftime("%d/%m %H:%M")}</span>
+  #<span class="chip" title="Quantidade de arquivos lidos">🧾 {json_files} arquivos</span><br>
+  #<span class="chip" title="Horário do render">⏱️ {datetime.now().strftime("%d/%m %H:%M")}</span>
 </div>
 """,
             unsafe_allow_html=True,
