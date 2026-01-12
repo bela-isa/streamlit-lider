@@ -1090,5 +1090,3 @@ with tab2:
 
         chip("📌 Posição média: menor = melhor", primary=True, tooltip="Quanto menor, melhor o posicionamento")
         chip("🧠 Heurística: autoridade alta + tráfego baixo = oportunidade", tooltip="Regra simples para priorização")
-
-            )
