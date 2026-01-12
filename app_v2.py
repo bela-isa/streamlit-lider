@@ -1091,12 +1091,4 @@ with tab2:
         chip("📌 Posição média: menor = melhor", primary=True, tooltip="Quanto menor, melhor o posicionamento")
         chip("🧠 Heurística: autoridade alta + tráfego baixo = oportunidade", tooltip="Regra simples para priorização")
 
-        with st.expander("✨ O que chama atenção de recrutadores (o que este dashboard demonstra)"):
-            st.markdown(
-                """
-- **UX de produto**: tema alternável, containers nativos (sem bugs), cards hover, export.
-- **Data storytelling**: resumo executivo + quadrante de oportunidades + comparativos.
-- **Boas práticas Streamlit**: cache (`@st.cache_data`), layout responsivo, keys, styling.
-- **Análise**: ranking competitivo, métricas agregadas e priorização baseada em sinais.
-"""
             )
